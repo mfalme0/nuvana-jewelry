@@ -1,0 +1,94 @@
+/* Botanical design system - authoritative CSS variables */
+:root {
+  --dp-color-ground: #f5efdf;
+  --dp-color-ink: #1e382c;
+  --dp-color-panel: #e0e5d3;
+  --dp-color-warm-field: #e6cbb8;
+  --dp-color-accent: #895440;
+  --dp-color-rule: #d4d0bd;
+  --dp-color-ornament-line: #b5baa4;
+  --dp-color-field-line: #697961;
+
+  --dp-typography-display: "Botanical Garamond", Georgia, serif;
+  --dp-typography-reading: "Botanical Instrument", ui-sans-serif, system-ui, sans-serif;
+
+  --dp-typography-body: 16px;
+  --dp-typography-metadata: 13px;
+  --dp-typography-label: 12px;
+  --dp-typography-compact-leading: 1.5;
+  --dp-typography-label-tracking: 0.12em;
+
+  --dp-spacing-panel-inline: max(30px, 4.2cqw);
+  --dp-radius-panel: 34px;
+  --dp-radius-panel-narrow: 27px;
+  --dp-radius-round: 50%;
+  --dp-border-hairline: 1px;
+
+  --dp-motion-interaction: 0.35s;
+  --dp-motion-easing: ease;
+}
+
+html {
+  font-size: var(--dp-typography-body);
+}
+
+body {
+  background-color: var(--dp-color-ground);
+  color: var(--dp-color-ink);
+  font-family: var(--dp-typography-reading);
+  font-size: var(--dp-typography-body);
+  line-height: var(--dp-typography-compact-leading);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Light paper grain overlay - subtle, does not reduce text clarity */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* Reduced motion: remove transitions/transforms per design system */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0s !important;
+    animation-duration: 0s !important;
+    transition-delay: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
+/* Focus visible - keep controls keyboard accessible */
+:focus-visible {
+  outline: 2px solid var(--dp-color-accent);
+  outline-offset: 2px;
+}
+
+/* Heading typography - serif, large, regular weight, tight tracking, close-set */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--dp-typography-display);
+  font-weight: 400;
+  line-height: var(--dp-typography-compact-leading);
+  margin: 0;
+}
+
+/* Reading text - smaller, relaxed leading */
+p {
+  margin: 0 0 1rem 0;
+}
+
+/* Tracked uppercase sans labels - used sparingly */
+.label {
+  font-size: var(--dp-typography-label);
+  letter-spacing: var(--dp-typography-label-tracking);
+  text-transform: uppercase;
+  font-family: var(--dp-typography-reading);
+  font-weight: 500;
+}
